@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.fangxia.testvalidator.usermanager.mapper.EmailVerificationMapper">
+
+    <select id="isTooFrequent" parameterType="String" resultType="Boolean">
+        SELECT EXISTS (
+            SELECT 1
+            FROM fx_email_verification
+            WHERE
+                email = #{email}
+                AND TIMESTAMPDIFF(SECOND, updated_time, NOW()) &lt; 120
+        )
+    </select>
+
+</mapper>
