@@ -1,6 +1,5 @@
 package com.fangxia.testvalidator.usermanager.controller;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.fangxia.testvalidator.common.auth.service.JwtAuthService;
 import com.fangxia.testvalidator.common.model.ApiResponse;
 import com.fangxia.testvalidator.common.security.BCryptUtil;
@@ -11,13 +10,13 @@ import com.fangxia.testvalidator.usermanager.model.eo.UserEO;
 import com.fangxia.testvalidator.usermanager.service.EmailVerificationIService;
 import com.fangxia.testvalidator.usermanager.service.UserIService;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseCookie;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;

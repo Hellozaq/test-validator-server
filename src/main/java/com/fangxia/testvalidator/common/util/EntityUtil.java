@@ -7,8 +7,6 @@ import com.fangxia.testvalidator.usermanager.model.dto.UserDTO;
 import com.fangxia.testvalidator.usermanager.model.eo.UserEO;
 import com.fangxia.testvalidator.usermanager.model.vo.UserVO;
 
-import java.time.LocalDateTime;
-
 public class EntityUtil {
 
     public static UserEO dtoToEo(UserDTO userDTO) {

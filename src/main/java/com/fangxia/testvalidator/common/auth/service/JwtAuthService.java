@@ -49,7 +49,6 @@ public class JwtAuthService {
             throw new InvalidTokenException("Refresh token is missing");
         }
         try {
-            String id = jwtUtil.validateAndGetId(refreshToken);
             int userType = jwtUtil.getUserType(refreshToken);
 
             if(userType == ADMIN) {

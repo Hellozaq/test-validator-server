@@ -1,24 +1,18 @@
 package com.fangxia.testvalidator.common.security;
 
 import com.fangxia.testvalidator.common.config.JwtConfig;
-import com.fangxia.testvalidator.common.constant.UserConstants;
 import com.fangxia.testvalidator.common.exception.ExpiredTokenException;
 import com.fangxia.testvalidator.common.exception.InvalidTokenException;
 import static com.fangxia.testvalidator.common.constant.UserConstants.*;
 
 import com.fangxia.testvalidator.common.exception.InvalidUserException;
-import com.fangxia.testvalidator.common.util.EntityUtil;
 import com.fangxia.testvalidator.usermanager.model.eo.UserEO;
-import com.fangxia.testvalidator.usermanager.model.vo.LoginResponseVO;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 import jakarta.annotation.PostConstruct;
-import jakarta.servlet.http.Cookie;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
