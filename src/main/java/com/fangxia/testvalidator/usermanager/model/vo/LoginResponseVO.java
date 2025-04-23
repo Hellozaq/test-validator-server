@@ -9,9 +9,6 @@ public class LoginResponseVO {
     @Schema(description = "Access Token")
     private String accessToken;
 
-    @Schema(description = "Refresh Token")
-    private String refreshToken;
-
     @Schema(description = "User Info")
     private UserVO user;
 

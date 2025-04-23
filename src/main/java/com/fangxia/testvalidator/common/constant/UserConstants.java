@@ -11,6 +11,6 @@ public class UserConstants {
 
     public static final long ADMIN_ACCESS_TOKEN_EXPIRES_TIME = 1000 * 60 * 60 * 24;
     public static final long USER_ACCESS_TOKEN_EXPIRES_TIME = 1000 * 60 * 30;
-    public static final long USER_REFRESH_TOKEN_EXPIRES_TIME = 1000 * 60;
+    public static final long USER_REFRESH_TOKEN_EXPIRES_TIME = 1000 * 60 * 60 * 24 * 7;
 
 }

@@ -1,7 +1,8 @@
 package com.fangxia.testvalidator.usermanager.service;
 
-import com.baomidou.mybatisplus.extension.service.IService;
 import com.fangxia.testvalidator.usermanager.model.eo.EmailVerificationEO;
+
+import com.baomidou.mybatisplus.extension.service.IService;
 
 public interface EmailVerificationIService extends IService<EmailVerificationEO> {
 

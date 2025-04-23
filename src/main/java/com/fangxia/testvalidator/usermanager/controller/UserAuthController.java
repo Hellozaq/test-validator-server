@@ -21,6 +21,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+import java.util.Map;
 import java.util.UUID;
 
 import static com.fangxia.testvalidator.common.constant.ApiConstants.AUTHENTICATION_URL;
@@ -124,6 +125,13 @@ public class UserAuthController {
 
         response.addHeader(HttpHeaders.SET_COOKIE, deleteCookie.toString());
         return ApiResponse.success("Logged out successfully.");
+    }
+
+    @GetMapping("/refresh")
+    public ApiResponse<?> refresh(@CookieValue("refreshToken") String refreshToken) {
+
+        return ApiResponse.success(Map.of("accessToken",jwtAuthService.refreshAccessToken(refreshToken)));
+
     }
 
 }

@@ -17,4 +17,14 @@ public class CodeUtil {
         return sb.toString();
     }
 
+    public static String generateJoinCode() {
+        StringBuilder sb = new StringBuilder();
+        int length = 8;
+        for (int i = 0; i < length; i++) {
+            int index = random.nextInt(CHAR_POOL.length());
+            sb.append(CHAR_POOL.charAt(index));
+        }
+        return sb.toString();
+    }
+
 }

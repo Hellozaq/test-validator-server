@@ -1,8 +1,9 @@
 package com.fangxia.testvalidator.usermanager.model.eo;
 
+import com.fangxia.testvalidator.common.model.eo.BaseEO;
+
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.fangxia.testvalidator.common.model.eo.BaseEO;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

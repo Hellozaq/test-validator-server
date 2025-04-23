@@ -33,10 +33,9 @@ public class JwtAuthService {
         String token = authorizationHeader.substring(7);
 
         try {
-            String id = jwtUtil.validateAndGetId(token);
-            int userType = jwtUtil.getUserType(token);
+            UserEO userEO = jwtUtil.getUserFromToken(token);
 
-            return new AuthenticatedUser(id, userType);
+            return new AuthenticatedUser(userEO);
         } catch (ExpiredTokenException | InvalidTokenException te) {
             throw te;
         }  catch (Exception e) {
@@ -57,7 +56,7 @@ public class JwtAuthService {
                 throw new InvalidUserException("Admin user can not generate a refresh token");
             }
 
-            return jwtUtil.generateAccessToken(id, userType);
+            return jwtUtil.generateAccessToken(jwtUtil.getUserFromToken(refreshToken));
         } catch (ExpiredTokenException | InvalidTokenException te) {
             throw te;
         } catch (Exception e) {
@@ -69,21 +68,23 @@ public class JwtAuthService {
 
         LoginResponseVO responseVO = new LoginResponseVO();
 
-        String accessToken = jwtUtil.generateAccessToken(user.getId(), user.getUserType());
+        String accessToken = jwtUtil.generateAccessToken(user);
         responseVO.setAccessToken(accessToken);
 
         if(user.getUserType() != UserConstants.ADMIN) {
-            String refreshToken = jwtUtil.generateRefreshToken(user.getId(), user.getUserType());
+            String refreshToken = jwtUtil.generateRefreshToken(user);
 
             Cookie refreshTokenCookie = new Cookie("refreshToken", refreshToken);
-            refreshTokenCookie.setSecure(true);
+//            refreshTokenCookie.setSecure(true);
+            refreshTokenCookie.setSecure(false);
             refreshTokenCookie.setHttpOnly(true);
             refreshTokenCookie.setPath("/");
             refreshTokenCookie.setMaxAge((int) (UserConstants.USER_REFRESH_TOKEN_EXPIRES_TIME / 1000));
 
             log.info("Refresh Token: {}", refreshToken);
 
-            refreshTokenCookie.setAttribute("SameSite", "Strict");
+//            refreshTokenCookie.setAttribute("SameSite", "Strict");
+            refreshTokenCookie.setAttribute("SameSite", "Lax");
 
             response.addCookie(refreshTokenCookie);
         }

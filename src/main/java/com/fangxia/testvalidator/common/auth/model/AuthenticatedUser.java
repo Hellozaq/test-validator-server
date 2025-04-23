@@ -1,3 +1,5 @@
 package com.fangxia.testvalidator.common.auth.model;
 
-public record AuthenticatedUser(String id, int userType) {}
+import com.fangxia.testvalidator.usermanager.model.eo.UserEO;
+
+public record AuthenticatedUser(UserEO userEO) {}

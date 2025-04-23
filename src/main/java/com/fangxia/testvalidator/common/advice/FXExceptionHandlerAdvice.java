@@ -11,6 +11,11 @@ import javax.management.ReflectionException;
 @RestControllerAdvice
 public class FXExceptionHandlerAdvice {
 
+    @ExceptionHandler(SecurityException.class)
+    public ApiResponse<?> handleSecurityException(SecurityException ex) {
+        return ApiResponse.illegal(ex.getMessage());
+    }
+
     @ExceptionHandler(InvalidEmailException.class)
     public ApiResponse<?> handleInvalidEmailException(InvalidEmailException iee) {
         return ApiResponse.failure(iee.getMessage());
