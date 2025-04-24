@@ -2,7 +2,6 @@ package com.fangxia.testvalidator.coursemanager.controller;
 
 import com.fangxia.testvalidator.common.annotation.PermittedUsers;
 import com.fangxia.testvalidator.common.model.ApiResponse;
-import com.fangxia.testvalidator.common.security.JwtAuthenticationFilter;
 import com.fangxia.testvalidator.common.util.CodeUtil;
 import com.fangxia.testvalidator.common.util.EntityUtil;
 import com.fangxia.testvalidator.coursemanager.model.dto.CourseDTO;
