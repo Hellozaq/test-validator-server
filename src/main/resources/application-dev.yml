@@ -25,6 +25,9 @@ mybatis-plus:
         com.fangxia.fxedu.model.eo,
         com.fangxia.fxedu.model.dto,
         com.fangxia.fxedu.model.vo
+    configuration:
+        log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
 
 logging:
     level:

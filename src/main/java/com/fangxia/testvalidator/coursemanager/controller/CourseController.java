@@ -1,8 +1,8 @@
 package com.fangxia.testvalidator.coursemanager.controller;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.fangxia.testvalidator.common.annotation.PermittedUsers;
 import com.fangxia.testvalidator.common.model.ApiResponse;
+import com.fangxia.testvalidator.common.security.JwtAuthenticationFilter;
 import com.fangxia.testvalidator.common.util.CodeUtil;
 import com.fangxia.testvalidator.common.util.EntityUtil;
 import com.fangxia.testvalidator.coursemanager.model.dto.CourseDTO;
@@ -14,12 +14,10 @@ import com.fangxia.testvalidator.usermanager.service.UserIService;
 import static com.fangxia.testvalidator.common.constant.ApiConstants.COURSE_URL;
 import static com.fangxia.testvalidator.common.constant.UserConstants.*;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -81,6 +79,25 @@ public class CourseController {
         courseIService.save(course);
 
         return ApiResponse.success("Course created successfully.");
+
+    }
+
+    @GetMapping("/page")
+    @Operation(summary = "Query 10 courses")
+    @PermittedUsers({ADMIN, TEACHER, ASSISTANT, STUDENT})
+    public ApiResponse<?> page(
+            @RequestParam Integer page,
+            @RequestParam Integer size,
+            @RequestAttribute("userType") Integer userType
+    ) {
+
+        if(userType == ADMIN) {
+
+            return ApiResponse.success(courseIService.pageAdminCourse(page, size));
+
+        } else {
+            return ApiResponse.failure("Temp Disabled");
+        }
 
     }
 
