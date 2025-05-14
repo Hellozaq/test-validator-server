@@ -38,8 +38,8 @@ CREATE TABLE fx_courses (
 );
 
 CREATE TABLE fx_course_users (
-    user_id CHAR(36) KEY,
-    course_id CHAR(36) KEY,
+    user_id CHAR(36),
+    course_id CHAR(36),
 
     created_time DATETIME DEFAULT CURRENT_TIMESTAMP,
     updated_time DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
