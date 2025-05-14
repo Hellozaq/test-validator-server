@@ -38,9 +38,8 @@ public class CourseServiceImpl
         LambdaQueryWrapper<CourseEO> wrapper = new LambdaQueryWrapper<>();
 
         switch (userType) {
-            case TEACHER-> {
+            case TEACHER ->
                 wrapper.eq(CourseEO::getCourseOwner, userId);
-            }
 
             case ASSISTANT, STUDENT -> {
                 List<String> courseIds = baseMapper.selectActiveCourseByUserId(userId);
@@ -51,9 +50,8 @@ public class CourseServiceImpl
                         .eq(CourseEO::getIsActive, true);
             }
 
-            default -> {
+            default ->
                 throw new InvalidUserException("Illegal user type: " + userType);
-            }
 
         }
 
