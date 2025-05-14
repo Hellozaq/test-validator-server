@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.fangxia.testvalidator.coursemanager.mapper.CourseMapper">
+
+    <select id="selectActiveCourseByUserId" resultType="string">
+        SELECT cu.course_id
+        FROM fx_course_users cu
+        JOIN fx_courses c ON cu.course_id = c.id
+        WHERE cu.user_id = #{userId}
+            AND c.is_active = TRUE
+    </select>
+
+</mapper>

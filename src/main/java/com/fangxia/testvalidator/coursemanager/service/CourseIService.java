@@ -10,4 +10,6 @@ public interface CourseIService extends IService<CourseEO> {
 
     Page<CourseVO> pageAdminCourse(int page, int size);
 
+    Page<CourseVO> pageCourse(int page, int size, int userType, String userId);
+
 }

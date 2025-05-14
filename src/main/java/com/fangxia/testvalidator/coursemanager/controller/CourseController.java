@@ -87,15 +87,14 @@ public class CourseController {
     public ApiResponse<?> page(
             @RequestParam Integer page,
             @RequestParam Integer size,
-            @RequestAttribute("userType") Integer userType
+            @RequestAttribute("userType") Integer userType,
+            @RequestAttribute("userId") String userId
     ) {
 
         if(userType == ADMIN) {
-
             return ApiResponse.success(courseIService.pageAdminCourse(page, size));
-
         } else {
-            return ApiResponse.failure("Temp Disabled");
+            return ApiResponse.success(courseIService.pageCourse(page, size, userType, userId));
         }
 
     }
