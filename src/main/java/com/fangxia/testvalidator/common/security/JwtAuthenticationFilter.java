@@ -2,6 +2,7 @@ package com.fangxia.testvalidator.common.security;
 
 import com.fangxia.testvalidator.common.auth.model.AuthenticatedUser;
 import com.fangxia.testvalidator.common.auth.service.JwtAuthService;
+import com.fangxia.testvalidator.common.exception.ExpiredTokenException;
 import com.fangxia.testvalidator.common.exception.InvalidTokenException;
 
 import jakarta.servlet.FilterChain;
@@ -46,9 +47,13 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                         new UsernamePasswordAuthenticationToken(user, null, Collections.emptyList());
                 SecurityContextHolder.getContext().setAuthentication(authentication);
 
-            } catch (InvalidTokenException e) {
-                log.warn("Invalid JWT token: {}", e.getMessage());
-                response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Invalid or expired token");
+            } catch (ExpiredTokenException ete) {
+                log.warn("Expired JWT token: {}", ete.getMessage());
+                response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Expired token");
+                return;
+            } catch (InvalidTokenException ite) {
+                log.warn("Invalid JWT token: {}", ite.getMessage());
+                response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Invalid token");
                 return;
             } catch (Exception e) {
                 log.error("Unexpected error during JWT processing", e);
