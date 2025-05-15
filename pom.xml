@@ -66,13 +66,19 @@
 		<dependency>
 			<groupId>com.baomidou</groupId>
 			<artifactId>mybatis-plus-boot-starter</artifactId>
-			<version>3.5.5</version>
+			<version>3.5.12</version>
 			<exclusions>
 				<exclusion>
 					<artifactId>mybatis-spring</artifactId>
 					<groupId>org.mybatis</groupId>
 				</exclusion>
 			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>com.baomidou</groupId>
+			<artifactId>mybatis-plus-jsqlparser</artifactId>
+			<version>3.5.12</version>
 		</dependency>
 
 		<dependency>
@@ -84,7 +90,7 @@
 		<dependency>
 			<groupId>com.baomidou</groupId>
 			<artifactId>mybatis-plus-generator</artifactId>
-			<version>3.5.5</version>
+			<version>3.5.12</version>
 			<scope>provided</scope>
 		</dependency>
 
